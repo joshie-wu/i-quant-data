@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title}>
+  <Header />
+  <main>
+    <section class="post-page">
+      <a class="back-link" href="/">← Back to posts</a>
+      <p class="blog-meta">{post.data.date}</p>
+      <h1>{post.data.title}</h1>
+      <Content />
+    </section>
+  </main>
+</Layout>
