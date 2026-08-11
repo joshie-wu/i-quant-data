@@ -8,7 +8,7 @@ const toSlug = (post) => post.id.replace(/\.md$/, '');
 
 <section class="blog-list" aria-label="Blog posts">
   {sortedPosts.map((post) => (
-    <a class="blog-card-link" href={`/posts/${toSlug(post)}`}>
+    <a class="blog-card-link" href={`/i-quant-data/posts/${toSlug(post)}`}>
       <article class="blog-card">
         <p class="blog-meta">{post.data.date}</p>
         <h2>{post.data.title}</h2>
