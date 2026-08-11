@@ -20,7 +20,7 @@ const { Content } = await render(post);
   <Header />
   <main>
     <section class="post-page">
-      <a class="back-link" href="/">← Back to posts</a>
+      <a class="back-link" href={`${import.meta.env.BASE_URL}`}>← Back to posts</a>
       <p class="blog-meta">{post.data.date}</p>
       <h1>{post.data.title}</h1>
       <Content />
