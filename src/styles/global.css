@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,100&display=swap');
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f7fb;
+  font-family: Barlow Condensed;
+  background-color: #F5F5F5;
   color: #1f2937;
 }
 
@@ -12,9 +14,10 @@ main {
 h1 {
   margin: 0;
   padding: 2.5rem 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 100;
   font-style: italic;
-  font-family: 'georgia', serif;
-  font-size: 3rem;
+  font-size: 48px;
 }
 
 .container {
