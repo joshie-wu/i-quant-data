@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts');
 const sortedPosts = posts.sort((a, b) => b.data.date.localeCompare(a.data.date));
-const toSlug = (post) => post.id.replace(/\.md$/, '');
+const toSlug = (post) => post.id.replace(/\.mdx$/, '');
 ---
 
 <section class="blog-list" aria-label="Blog posts">
