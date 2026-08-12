@@ -12,5 +12,4 @@ create-pages:
   before_script:
     - npm ci
   script:
-    - npm install
     - npm run build
