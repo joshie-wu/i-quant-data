@@ -21,9 +21,9 @@ I believe that there, too, TOPS serves a purpose: if an individual achieves succ
 try to retain that talent? Indeed, one core mission of TOPS is to "keep Louisiana’s best and brightest in the State to pursue postsecondary
 educational opportunities and become productive members of Louisiana’s workforce."
 
-<div style="display: flex;">
-  <img src = "../../../static/tops_award_amount.jpg" style = "width: 45%;"/>
-  <img src = "../../../static/students.jpg" style = "width: 40%;"/>
+<div style="display: flex; justify-content: center; align-items: center;">
+  <img src={`${import.meta.env.BASE_URL}static/tops_award_amount.jpg`} style="width: 45%;"/>
+  <img src={`${import.meta.env.BASE_URL}static/students.jpg`} style="width: 45%;"/>
 </div>
 
   My favorite thing about data is how it can accurately represent the actions of humans. The graphs above depicts the year-by-year TOPS payment made by 
