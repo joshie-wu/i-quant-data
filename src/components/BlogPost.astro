@@ -9,7 +9,7 @@ const toSlug = (post) => post.id.replace(/\.mdx$/, '');
 <section class="blog-list" aria-label="Blog posts">
   {sortedPosts.map((post) => {
     return (
-      <a className="blog-card-link" href={`${import.meta.env.BASE_URL}posts/${toSlug(post)}`}>
+      <a className="blog-card-link" href={`${import.meta.env.BASE_URL}/posts/${toSlug(post)}`}>
         <article className="blog-card">
           <p className="blog-meta">{post.data.date}</p>
           <h2>{post.data.title}</h2>
