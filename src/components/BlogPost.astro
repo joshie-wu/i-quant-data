@@ -22,11 +22,11 @@ function getFirstParagraph(body) {
     return (
       <a class="blog-card-link" href={`${import.meta.env.BASE_URL}/posts/${toSlug(post)}`}>
         <article class="blog-card">
-          <p id="blog-meta">{post.data.date}</p>
+          <p class="blog-meta">{post.data.date}</p>
           <h1>{post.data.title}</h1>
-          <p id="blog-excerpt">{post.data.excerpt}</p>
+          <p class="blog-excerpt">{post.data.excerpt}</p>
           <hr class = "new1">
-          <p>{getFirstParagraph(post.body)} <a href={`${import.meta.env.BASE_URL}/posts/${toSlug(post)}`}>READ MORE</a></p>
+          <p>{getFirstParagraph(post.body)} <span>READ MORE</span></p>
         </article>
       </a>
     );

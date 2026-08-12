@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,700;1,100&display=swap');
 
 :root {
-  --color-text: #1C1B33;
-  --color-link: #484FD4;
-  --color-bg: #FFFFFF;
+  --color-text: #242824;
+  --color-text-secondary: #5D665D;
+  --color-border: #5D665D;
+  --color-accent-strong: #145214;
+  --color-accent-weak: #C75C5C;
+  --color-callout: #E8F3E6;
+  --color-accent-soft: #F7E8E6;
+  --color-link: #228B22;
+  --color-bg: #FAFBF7;
   --font-heading: 'Barlow Condensed', sans-serif;
   --font-body: Roboto;
 }
@@ -17,71 +23,120 @@ body {
 }
 
 a {
-  color: var(--color-text);
+  color: var(--color-link);
   text-decoration: underline;
+  font-weight: 700;
+  font-size: 12px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a:visited {
-  color: var(--color-text);
+  color: var(--color-link);
   text-decoration: none;
+}
+
+a:hover {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+  border: 1px solid var(--color-border);
 }
 
 h1 {
   margin: 0;
   padding: 2.5rem 0 0 0;
   font-family: var(--font-heading);
+  color: var(--color-accent-strong);
   font-style: italic;
-  font-weight: bold;
   font-size: 48px;
 }
 
 
-main {
-  padding: 2rem;
-}
-
 .container {
   max-width: 70%;
   margin: 0 auto;
-  padding: 0 3.5rem;
 }
 
-.blog-list p{
-  font-family: var(--font-body);
-  font-size: 13px;
+/************ Horizontal Lines ************/
+
+.new1 {
+  border-top: 1px solid var(--color-accent-strong);
 }
 
+.new2 {
+  border-top: 3px solid var(--color-accent-strong);
+}
 
+/************ BLOG DISPLAY RELATED ************/
 .blog-list {
   margin: 0 auto;
   display: grid;
   gap: 1.5rem;
 }
 
+.blog-list p{
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 150%;
+}
+
 .blog-list h1 {
   padding: 0 0 0.2rem 0;
-  color: var(--color-text);
+  color: var(--color-accent-strong);
   font-weight: 100;
   font-family: var(--font-heading);
 }
 
-
-#blog-excerpt {
-  font-weight: 300;
-  font-family: var(--font-heading);
-  color: var(--color-text);
+.blog-card-link .blog-excerpt {
+  font-family: var(--font-text);
+  font-weight: bold;
+  color: var(--color-accent-strong);
 }
 
-#blog-meta {
-  font-weight: 100;
+.blog-card-link .blog-meta {
+  font-weight: bold;
   font-family: var(--font-heading);
-  color: var(--color-text);
+  color: var(--color-accent-weak);
+}
+
+.blog-card-link span{
+  color: var(--color-accent-soft);
+  padding: .1rem;
+  border: 1px solid var(--color-border);
+  border-radius:2px;
+  background: var(--color-accent-weak);
+}
+
+.blog-card-link span:hover{
+  color: var(--color-text-secondary);
 }
 
 a.blog-card-link{
+  color: var(--color-text);
   text-decoration: none;
+  font-weight: 200;
 }
 
+
+/************ BLOG POST RELATED ************/
+.post-page {
+  margin: 0 auto;
+  padding: 0 0 2rem;
+}
+
+.post-page h1 {
+  padding: 0;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--color-link);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
 
 .blog-content p {
   margin: 0 0 0.8rem;
@@ -95,27 +150,6 @@ a.blog-card-link{
   line-height: 150%;
 }
 
-.post-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0 4rem;
-}
-
-.post-page h1 {
-  padding: 0;
-}
-
-.back-link {
-  display: inline-block;
-  margin-bottom: 1.5rem;
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.back-link:hover {
-  text-decoration: underline;
-}
 
 nav {
   display: flex;
@@ -123,20 +157,6 @@ nav {
   align-items: center;
 }
 
-nav a,
-nav a:visited {
-  text-decoration: none;
-  color: var(--color-link);
-  font-weight: 700;
-  font-size: 12px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-nav a:hover {
-  background-color: #f0f0f0;
-  color: #000;
-}
 
 nav a.active {
   font-weight: 700;
@@ -146,9 +166,9 @@ nav a.active {
 
 #header {
   font-family: var(--font-heading);
-  font-weight: 100;
+  font-weight: 300;
+  color: var(--color-text);
   font-size: 12px;
-  font-style: normal;
 }
 
 #about h1 {
@@ -156,13 +176,4 @@ nav a.active {
   font-family: var(--font-heading);
   font-weight: 100;
   font-style: normal;
-}
-
-
-.new1 {
-  border-top: 1px solid black;
-}
-
-.new2 {
-  border-top: 3px solid black;
 }
