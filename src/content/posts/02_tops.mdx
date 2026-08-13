@@ -1,0 +1,105 @@
+---
+title: "My Blog, My Rules: TOPS"
+date: "2026-08-13"
+excerpt: Data-related lessons to learn, thanks to Patrick F Taylor. Also, there are some life lessons to learn, not so much thanks to Patrick F Taylor. 
+---
+
+import './post.css'
+
+  &emsp; For those who know me (and many of you do), I have been talking about starting a blog for a while, but something always got in the way. First, it was focusing on graduating from undergrad, then it was trying to make friends at my new job in a new city, then it was quitting said job to return back to grad school, and then it was attempting to be a bonafide academic weapon in my masters program - <b>which I achieved</b>! Finally, I have had three mostly uninterrupted weeks of freedom to take writing this blog seriously. 
+  
+  The idea of researching TOPS came to me while sitting in one of [Andrew Gelman's](https://sites.stat.columbia.edu/gelman/) lectures on multi-level modelling. I knew that Louisiana released parish-level data[^1], so I, along with my wickedly smart classmate [Ethan](https://www.linkedin.com/in/ethan-fleming-588b4a237/) came up with a wildly ambitious idea.
+  
+  We had wanted to study the effects of implementing the <b>Every Student Succeeds Act</b>[^2] across different states and across different parishes (counties) within those states. Additionally, I was curious about whether or not the presence of a state-wide merit scholarship would motivate high schoolers to perform better when compared to their peers in states without a merit scholarship. Moreover, Ethan and I wanted to know if a state's use of either the ACT or SAT as a standardized test would impact a student's performance relative to states who have their own assessment test (and whether or not the choice of ACT or SAT mattered). Finally, within a state, we had wanted to see if there was any county-level variable that was correlated with performance. We were very ambitious indeed 😓.
+  
+  
+  But as they say, shoot for the moon and land amongst the stars[^3]. Ethan and I wrapped up our project quite happily, but we never got the chance to fully explore our initial question, mainly because many states do not release county-level education data. Even fewer publish the full suite of ACT assessments. 
+  
+  The project stuck with me for a while, but I ultimately decided to scale it down after reading Dr. Kim Hunter Reid's speech about decoupling student success with family income in Louisiana. Having paid for ACT prep classes myself, I had always been aware of my leg up, TOPS wise. But I have never thought about the issue as eloquently as Dr. Reid. 
+  
+<h2> The Technical Magic </h2>
+
+  &emsp; One semi-hurdle was extracting tables from a PDF file. Having worked mostly with <i>.csv</i> files or <i>.xlsx</i> files, I was used to the data processing step in data science being very minimal, a tidyr function call here, a dplyr function call there, and so on. To successfully read Louisiana's published data on TOPS disbursement[^4], I used [`tabulapdf`](https://docs.ropensci.org/tabulapdf/) to scrape the table. 
+
+```r
+processing <- function(file,year){
+  out <- tabulapdf::extract_tables(file, pages = 2, col_names = FALSE) |>
+    map(as_tibble)
+    
+  raw <- out[[1]] |>
+    slice(-(1))
+  
+  processed <- raw |> 
+    row_to_names(row_number = 1) |> 
+    clean_names() |> 
+    # keep only the relevant rows
+    slice(c(1:6), c(12:20)) |> 
+    # add derived columns
+    mutate(
+      college_system = ifelse(str_detect(college, "LSU"), "LSU", "UL"),
+      year           = year
+    ) |> 
+    # drop unwanted columns
+    select(-starts_with("stipend")) |> 
+    select(-starts_with("natl")) |> 
+    select(-starts_with("total")) |> 
+    select(-matches("_4$|_5$")) |> 
+    # rename by suffix -> prefix
+    rename_with(~ case_when(
+      str_detect(.x, "_3$") ~ paste0("honors_",      str_remove(.x, "_3$")),
+      str_detect(.x, "_2$") ~ paste0("performance_", str_remove(.x, "_2$")),
+      TRUE                  ~ paste0("opportunity_", .x)
+    )) |>
+    # pivot for a united tuition and student count column
+    pivot_longer(
+      cols = !c(opportunity_college_system, opportunity_year, opportunity_college),
+      names_to = c("scholarship_type",".value"),
+      names_pattern = "^([^_]+)_(.*)$"
+    ) |>
+    # rename for clean names
+    rename_with(~ str_remove(.x, "^opportunity_"))
+}
+
+# Depending on visualization goals, you may have to do some additional processing
+# before graphing. In my case, I had to perform some aggregation using dplyr.
+
+tops_split <- ggplot(filtered, aes(x = college, y = total_students, fill = scholarship_type)) +
+  geom_col(position = "fill") +
+  scale_x_discrete(
+    labels = c(
+      "LA. TECH UNIVERSITY" = "Louisiana Tech",
+      "LSU-BATON ROUGE" = "LSU",
+      "SOUTHEASTERN LA UNIV" = "Southeastern",
+      "UNIV. OF LA. - LAFAYETTE" = "UL Lafayette",
+      "UNIV. OF LA. - MONROE" = "ULM"
+    )
+  ) +
+  scale_y_continuous(name = "Percentage", labels = scales::label_percent()) +
+  labs(x = NULL, fill = "TOPS") +
+  theme_minimal()
+```
+
+Luckily, the TOPS analysis only required looking into two school systems: the Louisiana State University system and the University of Louisiana system, as these two combined make up more than half of total TOPS scholars every year. Additionally, the PDF was published in a way that allowed for easy table reading, so the code in R was very simple. 
+
+The <b>`processing()`</b> function on the left should produce a tidy dataframe that is ready to perform analysis on. For reasons I'll discuss later on, I ended up not creating statistical models for the data. Instead, I tried my hand at creating simple, informative graphs. 
+
+For graphing, I typically use [`ggplot2`](https://ggplot2.tidyverse.org/). I know, I know. Asking a data scientist which graphing tool to use is like asking whether Coke is better than Pepsi. I've used seaborn and matplotlib before, and while ggplot's geometry layering can be hard to learn, I think it's easier to manipulate once you get the hang of it[^5].
+
+<h2> Lessons Learned </h2>
+
+
+  &emsp; Starting something new can be challenging, but what makes it easier is starting small. I thought long and hard what I wanted to first post to be, and I chose a simple R project because I'm familiar with the <b>`tidyverse`</b> workflow and new I could quickly create something simple, cute, and interesting. I tinkered around with substack and tumblr, but I knew I wanted to create my own frontend for ultimate customizability, so the project's simplicity allowed me to focus my efforts on web design.
+  
+  With that being said, this TOPS project has deepened my respect for researchers. The post is roughly a 10 minute read, but it took much longer to research. I wanted to represent the pros and cons of the Taylor scholarship as accurately as possible and remain bipartisan myself since TOPS was a bipartisan effort. As a result, I dug through many legal documents (none of which was neatly documented) and read countless news articles interviewing state representatives about their opinion of the Taylor Program. I went back to the original vision and found myself resonating with an oil magnate whose company is responsible for one of the biggest oil spills in the country [^6]. That was certainly a surprise. 
+  
+  I also learned some not-so-nice things. I learned that the International High School of New Orleans shut down due to not enough students meeting the state's accountability standards. A few of my friends went to that school. I also learned that Louisiana has <b>the highest poverty rate</b> in the country and that not enough of those students receive the need-based GO Grant.
+  
+  One important thing I have learned is that not everything will model nicely. Although it is my goal to provide an elegant data-based solutions to real problems, some issues requires more care and attention. The effectiveness of TOPS is one of them. 
+  
+  
+[^1]: For those curious, the parish-by-parish data is [here](https://doe.louisiana.gov/data-and-reports/high-school-performance). Oh, parishes are basically counties for you non-Louisianians. 
+[^2]: In brief, the Every Student Succeeds Act (ESSA) gave educational power back to the states, which meant states could set their own standards, perform their own assessment tests, and handle their own accountability reporting. It also meant that many states partnered with either the SAT or ACT to test their students, resulting in some states to have near 100% (or close to 100%) test participation for either one of the two tests.  
+[^3]: I always thought it should be the other way around. The moon is closer to us than any star is, no?
+[^4]: The yearly summaries can be found [here](https://mylosfa.la.gov/reports-publications/). For my report, I used fiscal year data, not academic year.
+[^5]: To qualify my preference more, learning about [facets](https://ggplot2.tidyverse.org/reference/facet_grid.html) was a game changer. Plus, there are a lot of user-made extensions to ggplot that I quite like, my favorite being [ggmap](https://github.com/dkahle/ggmap).
+[^6]: [Wikipedia Article](https://en.wikipedia.org/wiki/Taylor_Energy_oil_spill) to learn more. 

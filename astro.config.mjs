@@ -7,4 +7,10 @@ export default defineConfig({
   outDir: 'public',
   publicDir: 'static',
   integrations: [mdx()],
+    markdown: {
+    shikiConfig: {
+      theme: 'css-variables', // outputs CSS vars instead of hardcoded colors
+    },
+  }
 });
+

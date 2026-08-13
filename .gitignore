@@ -2,6 +2,8 @@
 public/
 # generated types
 .astro/
+.Rhistory
+i-quant-data.Rproj
 
 # dependencies
 node_modules/
