@@ -1,38 +1,49 @@
 ---
 title: "Quantifying the Impact of Merit-Based Scholarship in Louisiana "
 date: "2026-08-12"
-excerpt: In an effort to create affordable, equitable education, does the Taylor Opportunity
-  Program for Students make a meaningful impact?
+excerpt: In an effort to create affordable, equitable education, does the Taylor Opportunity Program for Students make a meaningful impact?
 ---
 
-  &emsp; In 1989, the Democratic congress led by Charles R. McDonald teamed with Republican businessman Patrick Taylor in a rare case of bipartisanship to push the
-"Taylor Plan", or the Taylor Opportunity Program for Students (TOPS) as it is known today. The plan was simple: to make education more affordable for Louisiana's brightest
-by waiving tuition for high-achieving students. The hope was that intelligent high schoolers would become more intelligent college students (collegers?), who would later 
-bring that intelligence into the Louisiana workforce. While TOPS today works similarily to back then, the tapestry of Louisiana has changed rapidly since the plan's inception.
+import './post.css'
 
-For one, the scholarship is no longer funded by the Taylor Foundation. While states like Georgia fund in-state scholarships via the state's lottery system, TOPS is completely 
-funded by the government, costing around 270$ million per year. Which that price tag, many congressman has called into question the return on investment in Louisiana's 
-elite students. On a personal note, having grown up in Louisiana, I have seen how beneficial TOPS can be. The  scholarship can be the difference between just eking out a living 
-during college to thriving. Additionally, the award is sometimes the deciding factor on whether or not some bright students attend college at all. However, because TOPS is a strictly 
-merit-based scholarship, some have questioned whether recipients actually need the tuition waiver, preferring the money to go to other places. I believe that there, too, 
-TOPS serves a purpose: if an individual achieves success due to Louisiana's K-12 investment, shouldn't the state try to retain that talent? Indeed, one core mission of TOPS 
-is to "keep Louisiana’s best and brightest in the State to pursue postsecondary educational opportunities and become productive members of Louisiana’s workforce."
+  &emsp; In 1989, the Louisiana Democratic caucus led by Charles R. McDonald teamed with Republican businessman Patrick Taylor to push the "Taylor Plan", or the Taylor Opportunity Program for Students (TOPS) as it is known today. The plan was simple: to make education more affordable for Louisiana's brightest by waiving tuition for high-achieving students. The hope was that intelligent high schoolers would become more intelligent college students (collegers?), who would later bring that intelligence into the Louisiana workforce. While TOPS works more or less the same today, the tapestry of Louisiana has changed significantly since the plan's inception.
 
-<div style="display: flex; justify-content: center; align-items: center;">
-  <img src={`${import.meta.env.BASE_URL}/tops_award_amount.jpg`} style={{width: "45%"}}/>
-  <img src={`${import.meta.env.BASE_URL}/students.jpg`} style={{width: "45%"}}/>
+<div class="callout">
+  <p>“LSU took him [Taylor] in, didn’t charge him tuition, and gave him an education. That stuck with him, so he started helping young people financially.”</p>
+  <p class = "credit"><b> Phyllis Taylor </b>, Patrick F. Taylor Foundation, Chairwoman; <i>2016</i></p>
 </div>
 
-  The graphs above depicts the year-by-year TOPS payment made by Louisiana and the amount of TOPS recipients in each year. Immediately, what stands out is the big drop of tuition 
-payouts in 2017. One would expect that the number of recipients should also experience a drop, but we actually have an increase in students receiving TOPS in 2017. This disparity is a
-result of political gridlock between state legislators. In an effort to make up a growing state deficit, lawmakers decided to "frontload" the scholarship program. Effectively, this means 
-that while students received full funding during the fall semester of 2016, the 2017 TOPS budget was sent into a free fall for those same students for the first time in the scholarship's history. 
-The settled percentage was 41.8%, leaving scholars to close the gap on the full cost of tuition. 
+For one, the scholarship is no longer funded by the Taylor Foundation. While states like Georgia fund their merit scholarships via the state's lottery system, TOPS is completely funded by Louisiana's Millennium Trust, costing around <b>300$ million</b> per year. This figure is only expected to rise in the next decade. With that price tag, many lawmakers have called into question the return on investment in Louisiana's brightest.[^1]
+
+One critique of the program is its strict merit-based approach. By awarding TOPS to high-achieving students, Louisiana naturally awards individuals of higher socioeconomic status. From 2011 to 2021, the state has "paid tution for 11,000 students in the top income bracket." In percentages, 40% of TOPS recipipents come from the upper echelon, creating a question of equity. [^2]
+
+<div class = "callout-two">
+  <p>"We want to try something that no one in the country has done, which is to decouple student success with family income &hellip; because the correlation between family income and student success is so significant in a state that has as much poverty as Louisiana."</p>
+  <p class="credit"><b>Dr. Kim Hunter Reid</b>, Louisiana Board of Regents, Commisioner of Higher Education; <i>2021</i> </p>
+</div>
+
+But, Louisiana does have a need-based scholarship program, called the GO Grant. Unlike TOPS, GO Grant is not funded by the Millenium Trust. Instead, the State of Louisiana's Office of Student Financial Assistance provides a yearly budget for the program. Additionally, while TOPS has constitutional safeguards about its operations, the GO Grant relies on year-to-year legislative discretions. As such, only <b>48% of qualified students</b> receive GO Grant need-based awards. [^3]
+
+The graphs below depicts the year-by-year TOPS payment made by Louisiana on the left and the ammount of TOPS recipient each year on the right. 
+ 
+
+<div style="display: inline-flex; justify-content: center; align-items: center; padding: 1rem;">
+  <figure>
+  <img src={`${import.meta.env.BASE_URL}/tops_award_amount.jpg`} style={{width: "45%"}}/>
+  <img src={`${import.meta.env.BASE_URL}/students.jpg`} style={{width: "45%"}}/>
+  <figcaption> Data retrieved from [Louisiana Office of Student Financial Assistance](https://mylosfa.la.gov/reports-publications/) by Fiscal Year</figcaption>
+  </figure>
+</div>
+
+One thing seems strange: in 2017, there is a sharp decline in funding while the amount of TOPS recipients remained stable. As mentioned earlier, TOPS operational budget was codified into Louisianian law. That is true; however, the state faced a fiscal cliff in 2016 with a <b>1$ billion decrease</b> in revenue. With TOPS being a big budget item, legislators met to discuss cuts to the program. 
+
+  The ultimate decision was to "frontload" payments, meaning that while students received full funding during the fall semester of 2016, the 2017 TOPS budget was sent into a free fall. The settled percentage was 41.8%, leaving those same scholars to close the gap on the full cost of tuition in the following semester. [^4]
 
 <h2> How the Scholarship Works </h2>
-  &emsp; Most TOPS recipient fall into one of three categories: Opportunity, Performance, or Honors. While all three awards cover the cost of tuition, the Performance and Honors award comes with 
-a stipend. The assignment of awards is based off high school performance, which is shown in the below table: 
 
+  &emsp; Most TOPS recipient fall into one of three categories: Opportunity, Performance, or Honors. While all three awards cover the cost of tuition, the Performance and Honors award comes with a stipend. The assignment of awards is based off high school performance, which is shown in the below table: 
+
+<figure>
 <table> 
   <tr> 
     <th>Scholarship</th>
@@ -59,15 +70,21 @@ a stipend. The assignment of awards is based off high school performance, which 
     <td>Tution Cost</td>
   </tr>
 </table>
+<figcaption> Data retrieved from the [Louisiana Board of Regent's 2015-2025 TOPS Report](https://www.laregents.edu/wp-content/uploads/2025/10/2025-TOPS-Report.pdf) </figcaption>
+</figure>
   
-In addition to the stipend, students are able to combine TOPS award with other sources financial aid sources, including Pell Grants or third party scholarships. This is not
-uncommon, as the cost of attending university also includes room and board, textbooks, student life fees, health insurance, etc. Normally, the total grants, loan and scholarship
-amount can not exceed the Cost of Attendance (COA); however, TOPS is a merit-based scholarship that will <b>always</b> pay the cost of tuition. If a student's
-grants, loans, or scholarship already cover the cost, TOPS can push total aid to an excess amount, which triggers a refund. Although it is a point of contention, Louisiana's 
-government provides assurance that "a student whose TOPS award is &hellip; refunded because of an over award of aid remains eligible for the award as long as the continuation requirements 
-of the award are met." 
+In addition to the stipend, students are able to combine TOPS award with other sources financial aid sources, including Pell Grants or third party scholarships. This is common, as the cost of attending university also includes room and board, textbooks, student life fees, health insurance, etc. 
 
-In practice, this means that some high-achieving students are <b>paid to go to college</b>, incentivizing them to remain in-state. 
+Normally, the total grants, loan and scholarship amount can not exceed the Cost of Attendance (COA); however, TOPS is a merit-based scholarship that will always pay the cost of tuition. If a student's financial aid package already cover the cost, TOPS can push total aid to an excess amount, which triggers a refund. Although it is a point of contention, Louisiana's 
+government provides assurance that "a student whose TOPS award is &hellip; refunded because of an over award of aid remains eligible for the award as long as the continuation requirements of the award are met." 
+
+In practice, this means that high-achieving students can be <b>paid to go to college</b>, incentivizing them to remain in-state. 
 
 <h2> How Effective is TOPS? </h2> 
-Well, the short answer is that TOPS is pretty effective.
+
+
+
+[^1]: [The Lens NOLA](https://thelensnola.org/2023/02/02/who-benefits-from-tops-it-just-became-harder-to-know/) 
+[^2]: [Louisiana Illuminator](https://lailluminator.com/2021/10/22/louisiana-higher-ed-board-troubled-by-number-of-tops-recipients-from-millionaire-households/) 
+[^3]: Figure retrieved from the [Louisiana Regents's budget request for 2027](https://www.laregents.edu/wp-content/uploads/2021/11/FY23-Higher-Education-Budget-Request-Letter.pdf), which states that GO Grants serve 48% of eligible students. This is an increase from the [2022 budget request](https://www.laregents.edu/wp-content/uploads/2021/11/FY23-Higher-Education-Budget-Request-Letter.pdf), where GO Grants served 45%
+[^4]: [WWL-TV](https://www.wwltv.com/article/news/education/louisiana-students-facing-big-tops-cuts-in-spring/289-344982159)

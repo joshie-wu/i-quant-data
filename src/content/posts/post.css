@@ -1,0 +1,72 @@
+
+
+h2 {
+  font-family: var(--font-heading);
+  font-style: italic;
+  text-decoration: underline wavy var(--color-accent-strong);
+  color: var(--color-accent-weak);
+  font-size: 28px;
+}
+
+b{
+  background: var(--color-accent-soft);
+}
+
+table{
+  margin:auto;  
+  border: 1px solid var(--color-border);
+  background: var(--color-callout);
+}
+
+table th{
+  text-align: center;
+  background: var(--color-accent-soft);
+  border: 1px solid var(--color-border);
+  padding: 5px;
+}
+
+table td{
+  text-align: center;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  padding: 5px;
+}
+
+
+.callout{ 
+  float: left;
+  margin: 1rem 1.5rem 1rem 0;
+  width:35%;
+  background: var(--color-callout);
+  border-left: 3px solid var(--color-border);
+  color: var(--color-accent-strong);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  padding: 1%;
+}
+
+.callout-two{ 
+  float: right;
+  margin: 1rem 0 1rem 1.5rem;
+  width:35%;
+  background: var(--color-callout);
+  border-left: 3px solid var(--color-border);
+  color: var(--color-accent-strong);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  padding: 1%;
+}
+
+.callout b,.callout-two b{
+  background: none;
+}
+
+.callout .credit, .callout-two .credit{
+  font-size: 12px;
+  text-align: right;
+}
+
+figcaption{
+  text-align: center;
+  font-size: 12px;
+}

@@ -7,7 +7,7 @@ const toSlug = (post) => post.id.replace(/\.mdx$/, '');
 
 function getFirstParagraph(body) {
   const plainText = body.replace(/^---[\s\S]*?---/, '').trim();
-  const firstParagraph = plainText.split(/\n\s*\n/)[0]; // split on blank lines
+  const firstParagraph = plainText.split(/\n\s*\n/)[1]; // split on blank lines
   return firstParagraph
     .replace(/\[.*?\]\(.*?\)/g, '')   // strip full markdown links [text](url)
     .replace(/&\w+;/g, '')            // strip HTML entities like &emsp;
