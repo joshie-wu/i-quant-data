@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => b.data.date.localeCompare(a.data.date));
+const mapping = (post) => post.id.replace(/\.mdx$/, '');
+---
+
+<section class="giscus-container">
+<script src="https://giscus.app/client.js"
+        data-repo="joshie-wu/i-quant-data"
+        data-repo-id="R_kgDOTayygA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTayygM4DDTXW"
+        data-mapping="${mapping(post)}"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="https://cdn.jsdelivr.net/gh/joshie-wu/i-quant-data@main/src/styles/giscus.css"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</section>
