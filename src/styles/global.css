@@ -97,7 +97,7 @@ h1 {
   color: var(--color-accent-weak);
 }
 
-.blog-card-link span{
+#read-more{
   color: var(--color-accent-soft);
   padding: .1rem;
   border: 1px solid var(--color-border);
@@ -105,7 +105,7 @@ h1 {
   background: var(--color-accent-weak);
 }
 
-.blog-card-link span:hover{
+#read-more:hover{
   color: var(--color-text-secondary);
 }
 
@@ -114,6 +114,57 @@ a.blog-card-link{
   text-decoration: none;
   font-weight: 200;
 }
+
+.post-header{
+  display:flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items: baseline;
+  font-weight: bold;
+}
+
+/************ TAGS ************/
+
+.tags{
+  gap:.5rem;
+  display:flex;
+  flex-direction: row;
+}
+
+.education{
+  border: 1px solid var(--color-accent-weak);
+  background: var(--color-accent-soft);
+  padding: .15rem;
+  border-radius: 10px;
+}
+
+.politics{
+  border: 1px solid #4A5089;
+  background: #E0E0E6 ;
+  padding: .15rem;
+  border-radius: 10px;
+}
+
+.meta{
+  border: 1px solid;
+  border-radius: 10px;
+  padding: .15rem;
+  background: linear-gradient(
+        135deg,
+        rgba(255, 0, 0, .4) 0%,
+        rgba(255, 154, 0, .4) 10%,
+        rgba(208, 222, 33, .4) 20%,
+        rgba(79, 220, 74, .4) 30%,
+        rgba(63, 218, 216, .4) 40%,
+        rgba(47, 201, 226, .4) 50%,
+        rgba(28, 127, 238, .4) 60%,
+        rgba(95, 21, 242, .4) 70%,
+        rgba(186, 12, 248, .4) 80%,
+        rgba(251, 7, 217, .4) 90%,
+        rgba(255, 0, 0, .4) 100%
+    );
+}
+
 
 
 /************ BLOG POST RELATED ************/
