@@ -1,0 +1,59 @@
+---
+title: "Do People Still Use Pie Charts?"
+date: "2026-08-16"
+excerpt: Graphs are complicated and abstract beasts, and no, I'm not kidding.
+tags: ["data viz"]
+---
+
+import './css/graphs_post.css'
+
+  &emsp; Many kids start learning about graphs in elementary school. Bar graphs, line graphs, pictograms and pie charts are the usual suspects. They aren't hard to understand, even for children. But our graphical education doesn't end there. Obviously, people who studied statistics will be familiar with box plots and scatter plots, but graphs are prevalent in all fields. MBA pursuers may have learned about a funnel chart, aeronautics enthusiasts should know the wind rose diagram, public health officials constantly wrangle with geographic charts, and so on. We are visual creatures, and <b>well-made</b> graphs make complicated data easier to comprehend by aggregating and summarizing like groups for our brains. 
+  
+  For example, below is a table of the most streamed spotify artists, obtained from a [Kaggle dataset](https://www.kaggle.com/datasets/srisyra02/spotify-music-artist-streaming-analytics) about Spotify's top streamed artists. Imagine we want to analyze the total streams. To be fair, the data is already processed and organized, so it's not too hard. In fact, we can simply read in order to see that Drake is the most streamed artist, Taylor Swift is the second most streamed, and so on. 
+
+
+
+<div class="table">
+
+| Artist         | Sex    | Primary Genre | Debut Year | Total Streams (in millions) |
+|----------------|--------|----------------|------------|------------------------------|
+| Drake          | Male   | Hip-Hop        | 2006       | 137492.1                    |
+| Taylor Swift   | Female | Pop            | 2006       | 127861.0                    |
+| Bad Bunny      | Male   | Reggaeton      | 2013       | 125899.8                    |
+| The Weeknd     | Male   | R&B            | 2009       | 95703.2                     |
+| Justin Bieber  | Male   | Pop            | 2009       | 78104.4                     |
+| ⋮              | ⋮      | ⋮              | ⋮          | ⋮                            |
+</div>
+
+
+But what if we want to see the most streamed genres? Instead of pulling out a calculator and adding streams row by row, we can invoke the humble barchart. When using [`ggplot2`](https://ggplot2.tidyverse.org/reference/geom_bar.html) and [`dplyr`](https://dplyr.tidyverse.org/), the package does all of the arithmetic and coding for us!
+<div class = "flex">
+  ```r
+  genre <- df |>
+  group_by(primary_genre) |>
+  summarise(
+    total_streams_in_millions = sum(total_streams_in_millions)
+  ) |>
+  top_n(7, total_streams_in_millions)
+
+
+  ggplot(genre, aes(x = reorder(primary_genre, -total_streams_in_millions), 
+                  y = total_streams_in_millions, 
+                  fill = primary_genre)) + 
+  geom_col() + 
+  labs(
+    x = "Genre",
+    y = "Total Streams (in millions)"
+  ) +
+  guides(fill = "none") + 
+  scale_y_continuous(labels = scales::label_comma()) + 
+  theme_minimal()
+  ```
+    <img src={`${import.meta.env.BASE_URL}/02_graphs/genre.jpg`} style={{width: "45%", margin: "10px", border: "1px solid var(--color-border)"}}/>
+</div>
+
+This is pretty easy to understand: the taller the bar, the more streams a genre has! 
+
+  
+<h2> The History of Graphs </h2>
+

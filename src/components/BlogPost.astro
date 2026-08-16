@@ -26,7 +26,7 @@ function getFirstParagraph(body) {
         <article class="blog-card">
           <div class = "post-header">
             <p class="blog-meta">{post.data.date}</p>
-            <div class = "tags">{post.data.tags.map((tag) => <span class = `${tag}`>{tag}</span>)}</div>
+            <div class = "tags">{post.data.tags.map((tag) => <span class = `${tag.replaceAll(" ","")}`>{tag}</span>)}</div>
           </div>
           <h1>{post.data.title}</h1>
           <p class="blog-excerpt">{post.data.excerpt}</p>

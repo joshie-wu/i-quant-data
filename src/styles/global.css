@@ -49,6 +49,20 @@ h1 {
   font-size: 48px;
 }
 
+h2 {
+  display:block;
+  font-family: var(--font-heading);
+  font-style: italic;
+  text-decoration: underline wavy var(--color-accent-strong);
+  color: var(--color-accent-weak);
+  font-size: 28px;
+}
+
+
+b{
+  background: var(--color-accent-soft);
+}
+
 
 .container {
   max-width: 70%;
@@ -145,6 +159,14 @@ a.blog-card-link{
   border-radius: 10px;
 }
 
+.dataviz{
+  border: 1px solid #C68D5D;
+  background: #FFFAF7;
+  padding: .15rem;
+  border-radius: 10px;
+}
+
+
 .meta{
   border: 1px solid;
   border-radius: 10px;
@@ -164,6 +186,7 @@ a.blog-card-link{
         rgba(255, 0, 0, .4) 100%
     );
 }
+
 
 
 
