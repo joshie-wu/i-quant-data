@@ -45,13 +45,23 @@ table td{
 }
 
 .img{
-  width:35%;
+  width:25%;
   padding: 0 1rem;
 }
 
 .img2{
   width:65%;
   max-height: 20%;
+}
+
+ol li{
+  margin-bottom: 1rem;
+}
+
+.img3{
+  display: block;
+  width: 50%;
+  margin: auto;
 }
 
 .flexbox{

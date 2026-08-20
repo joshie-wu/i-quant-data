@@ -7,9 +7,9 @@ tags: ["data viz"]
 
 import './css/graphs_post.css'
 
-  &emsp; Many kids start learning about graphs in elementary school. Bar graphs, line graphs, pictograms and pie charts are the usual suspects. They aren't hard to understand, even for children. But our graphical education doesn't end there. Obviously, people who studied statistics will be familiar with box plots and scatter plots, but graphs are prevalent in all fields. MBA pursuers may have learned about a funnel chart, aeronautics enthusiasts should know the wind rose diagram, public health officials constantly wrangle with geographic charts, and so on. We are visual creatures, and <b>well-made</b> graphs make complicated data easier to comprehend by aggregating and summarizing like groups for our brains. 
+  &emsp; Many kids start learning about graphs in elementary school: bar graphs, line graphs, pictograms and pie charts are the usual suspects. They aren't hard to understand, even for children, but our graphical education rarely ends there. Obviously, people who studied statistics will be familiar with box plots and scatter plots, but graphs are prevalent in all fields. MBA students learn about funnel charts, aeronautics enthusiasts use wind rose diagrams, and public health officials constantly wrangle with geographic charts. We are visual creatures, and <b>well-made</b> graphs make complicated data easier to comprehend by aggregating and summarizing like groups for our brains. 
   
-  For example, below is a table of the most streamed spotify artists, obtained from a [Kaggle dataset](https://www.kaggle.com/datasets/srisyra02/spotify-music-artist-streaming-analytics) about Spotify's top streamed artists. Imagine we want to analyze the total streams. To be fair, the data is already processed and organized, so it's not too hard. In fact, we can simply read in order to see that Drake is the most streamed artist, Taylor Swift is the second most streamed, and so on. 
+  For example, below is a table of the most streamed Spotify artists, obtained from a [Kaggle dataset](https://www.kaggle.com/datasets/srisyra02/spotify-music-artist-streaming-analytics) about Spotify's top streamed artists. If we want to analyze the total streams, the process is fairly straightforward since the data is already organized. In fact, a quick glance down reveals Drake is the most streamed artist, Taylor Swift is the second most streamed, and so on. 
 
 
 
@@ -26,7 +26,8 @@ import './css/graphs_post.css'
 </div>
 
 
-But what if we want to see the most streamed genres? Instead of pulling out a calculator and adding streams row by row, we can invoke the humble barchart. When using [`ggplot2`](https://ggplot2.tidyverse.org/reference/geom_bar.html) and [`dplyr`](https://dplyr.tidyverse.org/), the package does all of the arithmetic and coding for us!
+But what if we want to see the most streamed genres? Instead of pulling out a calculator and adding streams row by row, we can rely on the humble bar chart. When using [`ggplot2`](https://ggplot2.tidyverse.org/reference/geom_bar.html) and [`dplyr`](https://dplyr.tidyverse.org/), the packages do all of the arithmetic and coding for us!
+
 <div class = "flex">
   ```r
   genre <- df |>
@@ -52,19 +53,21 @@ But what if we want to see the most streamed genres? Instead of pulling out a ca
     <img src={`${import.meta.env.BASE_URL}/02_graphs/genre.jpg`} style={{width: "45%", margin: "10px", border: "1px solid var(--color-border)"}}/>
 </div>
 
-The bar chart is pretty straightforward: the taller the bar, the more streams a genre has. In fact, the other graphs have intuitive interpretations as well, so what's the deal with pie charts? After all, the size of a slice in a pie chart is analgous to the height of a bar in a bar graph. 
+The bar chart is pretty straightforward: the taller the bar, the more streams a genre has. In fact, the other graphs have intuitive interpretations as well, so what's the deal with pie charts? After all, the size of a slice in a pie chart is analogous to the height of a bar in a bar graph. 
 
   
 <h2> The History of Graphs </h2>
 
-  &emsp; Graphs could have been useful to many people throughout history. When the Ancient Mesopotamians recorded the first bartering system, they could have created a pictograph to keep track of trades. When the Ancient Greeks made advances in geoemetry, they could have used a pie chart to represent pieces of a whole. But here is the thing: graphs are abstract. Take the above example: Looking at the graph, we are able to see clearly that Hip-Hop had the most streams, followed by Pop and Reggaeton. However, we are only able to glean this information because of context clues: the x axis, the y axis, and the category labels. But if we remove the context, the bar graph could easily explain trends in other data. Maybe the different sized bars represent the daily bus traffic volume or maybe they represent the most ordered flavors in an ice cream shop. Graphs <b>strip away physical details to focus entirely on relationships,</b> and relationships in data is abstract and sometimes monstrous. 
+  &emsp; Throughout history, humans could have relied on visual aids to organize complex information. For instance, when the Ancient Mesopotamians recorded their first bartering system, they might have used pictographs to keep track of trades. When the Ancient Greeks made advances in geometry, they could have used a pie chart to represent pieces of a whole. But they didn't. 
+  
+  Why? Because graphs are abstract! In the previous example, looking at the bar chart clearly shows that Hip-Hop had the most streams, followed by Pop and Reggaeton. However, we are only able to glean this information because of context clues: the x-axis, the y-axis, and the category labels. But if we remove the context, the bar graph could easily explain trends in other data. Maybe the different-sized bars represent the daily bus traffic volume or maybe they represent the most ordered flavors in an ice cream shop. Graphs <b>strip away physical details to focus entirely on relationships,</b> and relationships in data are abstract and sometimes unwieldy. 
 
 <div class = "flexbox">
   <img class = "img" src ={`${import.meta.env.BASE_URL}/02_graphs/star-chart.jpg`}/>
   <img class = "img" src = {`${import.meta.env.BASE_URL}/02_graphs/galileo-star.jpg`}/>
 </div>
 
-    <p>It's no surprise then that one of the first graphs created was something physical: mapping the location of stars [^1]. The graph on the right shows physical relationships: how far away is one star from another, and what sort of constellations do they form? This tradition of mapping stars continued into the future, with Galileo mapping out invisible stars within the Pleides using a star chart. [^2] </p>
+    <p>It's no surprise then that one of the first graphs created was something physical: mapping the location of stars [^1]. The graph on the left shows physical relationships: how far away one star is from another, and what constellations they form. This tradition of mapping stars continued for centuries, with Galileo mapping out invisible stars within the Pleiades using a star chart. [^2] </p>
 
 <div class = "flex2">
 <img class = "img2" src = {`${import.meta.env.BASE_URL}/02_graphs/pie-chart.png`}/>
@@ -74,21 +77,89 @@ The bar chart is pretty straightforward: the taller the bar, the more streams a 
 </div>
 
     
-    As scientists made advances, graphs naturally advanaced as well. In 1801, William Playfair published <u><b>Statistical Breviary</b></u>[^4], where he introduced the first pie chart. Now, it was a fairly simple chart, but it perfectly displays the capabilities of pie charts: given a whole, each slice represents how big a component is. At the time of Playfair's writing, the Turkish empire spanned 790,000 square miles. From the chart, it is clear that most of the land lies in Asia, and then European and African continents. 
+    As scientists made advances, graphs naturally advanced as well. In 1801, William Playfair published <u><b>Statistical Breviary</b></u>[^4], in which he introduced the first pie chart. Now, it was a fairly simple chart, but it perfectly displays the capabilities of pie charts: given a whole, each slice represents the relative size of a component. At the time of Playfair's writing, the Turkish empire spanned 790,000 square miles. From the chart, it is clear that most of the land lies in Asia, followed by Europe and Africa.
     
     
     Following the pie charts, other circle graphs were formalized. In 1877, Georg von Mayr released <b><u>Die Gesetzmässigkeit im Gesellschaftsleben: Statistische Studien</u></b> (The Regularities in Social Life: Statistical Studies) where he presented a circle graph, which he called "Linien-Diagramme im Kreise" (line chart in a circle) [^5]. This is an early example of a radar chart, which allows for easier comparison of multiple quantitative variables across the same groups. 
     
-
-
 <h2> Finally, What's My Deal with Pie Charts? </h2>
-  
+
+My biggest gripe with pie charts is that they can be hard to read, and I'm not the only one who thinks so [^6]. Sure, if there are only three categories with distinctly different sizes as in the William Playfair example, then a pie chart is perfectly fine. However, when dealing with multiple categories that have only minor differences in size, a bar chart represents the data much more clearly.
+
+
+For example, take the Spotify data above and re-visualize it as a pie chart. 
+
+<img class ="img3" src = {`${import.meta.env.BASE_URL}/02_graphs/pie-genre.jpg`}/>
+
+The chart has ordered the slices from highest to lowest number of streams, but that is not immediately clear. The Hip-Hop and Pop wedges are too similar in size, as are the R&B, Latin and EDM slices. If the visualization goal was to display the total number of streams per genre, the bar graph shows the stream differences better. 
+
+However, if the goal was to display the total number of streams in percentages then the pie chart is better than the bar graph, but there are still two problems. First, in the current pie chart, Hip-Hop appears to make up roughly 30% of the total streams. However, this is misleading because the chart doesn't represent the true whole &mdash; it only accounts for the Top 7 genres and not all 23.
+
+
+Second, even if we do include all genres, a pie chart with many slices is unwieldy to label and read. Sure, we can create a separate category called "Other," but that may compress too much information depending on how many genres are counted as an "other." Moreover, if we include that many slices, it may be necessary to start labelling percentages, but at that point, the pie chart is no better than a table. So, when comparing percentages, I typically prefer a waffle chart: 
+
+<div class = "flex">
+  ```r
+  total_streams <- sum(df$total_streams_in_millions)
+n_squares <- 100
+
+hip_hop_streams <- sum(df %>% filter(primary_genre == "Hip-Hop") %>% select(total_streams_in_millions))
+pop_streams <- sum(df %>% filter(primary_genre == "Pop") %>% select(total_streams_in_millions))
+reggaeton <- sum(df %>% filter(primary_genre == "Reggaeton") %>% select(total_streams_in_millions))
+
+hip_hop_pct <- round(hip_hop_streams / total_streams * n_squares)
+pop_pct <- round(pop_streams / total_streams * n_squares)
+reggaeton_pct <- round(reggaeton / total_streams * n_squares)
+
+
+# Transforming into a data frame
+
+waffle_data <- data.frame(
+  pos = 1:n_squares,
+  category = c(rep("Hip-Hop", hip_hop_pct), rep("Pop", pop_pct), rep("Reggaeton",reggaeton_pct), rep("Other", n_squares - hip_hop_pct - pop_pct - reggaeton_pct))
+) %>%
+  mutate(
+    x = (pos - 1) %% 10,
+    y = (pos - 1) %/% 10
+  )
+
+
+waffle <- ggplot(waffle_data, aes(x = x, y = y, fill = category)) +
+  geom_tile(color = "white", linewidth = 1, width = 0.9, height = 0.9) +
+  scale_fill_manual(values = c("Hip-Hop" = "#145214", "Pop" = "#C75C5C", "Reggaeton" = "#228B22", "Other" = "#F7E8E6")) +
+  coord_equal() +
+  scale_y_reverse() +
+  theme_void() +
+  labs(
+    title = "Top 3 Genre Percentages",
+    fill = NULL
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, hjust = .5),
+    legend.position = "bottom"
+  )
+  ```
+    <img src={`${import.meta.env.BASE_URL}/02_graphs/waffle-genre.jpg`} style={{width: "45%", margin: "10px", border: "1px solid var(--color-border)"}}/>
+</div>
+
+<h2> Concluding Thoughts </h2>
+
+Although I tend to gravitate towards other kinds of graphs, I do think pie charts still have their uses.
+
+<ol>
+  <li> If we are only comparing two to three groups, then a pie chart can be a good visualization tool, especially if the differences are large. </li> 
+  <li> Pie charts can be especially useful for tracking some sort of percentage-related goal. For example, if I am tracking my budget and want to keep rent under 30% (following the traditional rule of thumb), then a pie chart can be a quick visualization to see how much of my money is going towards rent. </li>
+  <li> In general, a pie chart can be good if we don't care about exact percentages but only care about how one category relates to another. Going back to budgeting, if all I care about is that my eating-out budget is much lower than my grocery budget for a month, then a pie chart can help me quickly see the breakdown.</li>
+  <li> Finally, almost everyone has learned about pie charts during school. This means that the pie chart is one of the more friendly charts to read and interpret for the <b>general public</b>. During my time in academia, I became accustomed to presenting visualizations to those who are super data-savvy; however, most readers may not understand more complicated graphs. </li>
+</ol>
+
 
   
   
   
 [^1]: [Found in Dunhuang, China,](https://www.science.org/content/article/china-lays-claim-world-s-oldest-surviving-star-catalog) some researchers say that this could be the oldest surviving star chart found in the world. 
 [^2]: [Galileo](https://galileo.library.rice.edu/lib/student_work/astronomy95/orionpleiades.html) also tried to map out the Orion constellation, but found it to be too big. 
-[^3]: 
+[^3]: Mayr offers four different ways of presenting a radar chart. First, the chart can have the starting point be the center of the circle (figures a and c) or the circumference of the circle (figures b and d). Then, we can either have the magnitude be represented by spokes (figures a and b) or connect the endpoints of the spokes to form a closed polygon (figures c and d).  
 [^4]: Apparently, Playfair's chart was illustrated with [stained copper plates](https://ia801406.us.archive.org/25/items/statisticalbrev00playgoog/statisticalbrev00playgoog.pdf)!
-[^5]: If you look at the [graphs before and after](https://archive.org/details/diegesetzmssig00mayruoft/page/78/mode/2up?ref=ol), you might already see something familiar! 
+[^5]: If you look at the [graphs before and after](https://archive.org/details/diegesetzmssig00mayruoft/page/78/mode/2up?ref=ol), you might already see something familiar to graphs we use today. 
+[^6]: [PubMed Central](https://pmc.ncbi.nlm.nih.gov/articles/PMC25873/) "Why are angles misperceived"
