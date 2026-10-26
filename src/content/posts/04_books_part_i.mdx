@@ -1,0 +1,84 @@
+---
+title: "Do Critics Represent Well?"
+date: "2026-09-10"
+excerpt: Do the voice of literary critics reflect the critques of the general public?
+tags: ["books", "bayesian"]
+---
+
+import './css/books_post.css'
+
+  &emsp; In 2024, the Upshot and the New York Times asked a bold question: what are the 100 best books of the 21st century?  I was curious because while I read a fair bit, I don't think I could confidently rank the top 100 books of this century.
+  
+<div class="callout">
+  <p>In collaboration with the Upshot, we sent a survey to hundreds of literary luminaries, asking them to name the 10 best books published since Jan. 1, 2000 &hellip; We let them each define “best” in their own way. For some, this simply meant “favorite.” For others, it meant books that would endure for generations.</p>
+  <p> - New York Times [^1] </p>
+</div>
+
+  Upon skimming through the list, I thought, "Hey! I actually read some of these!" However, there were other entries that I have never heard of. Even worse, there are some really good books published this century that did not make an appearance (looking at you, [The Namesake](https://www.goodreads.com/book/show/33917.The_Namesake)). I'm not saying I represent the general public, but I started to question whether the "literary luminaries" accurately reflect the taste of the wider (less luminary, mayhaps?) public. 
+
+  First, I was curious about whether the critics' overall taste reflects what is currently being widely read. The romance and fantasy genres have been, and still are, extremely popular, especially on the book side of TikTok aptly known as BookTok. Are these genre preferences accurately reflected in the Times list? 
+  
+  Second, just like how some movies are hated by critics but loved by audiences and vice-versa, are there books that the luminaries loved that aren't well received by the wider public? Similarly, are there books largely praised by the public that are missing from the critics' lists? 
+  
+  Finally, because this is a data science blog, I wanted to use Bayesian techniques to analyze whether or not people agree with the ordering of the top 100 books.
+  
+<h2> Data & Methodology</h2>
+
+As far as I know, there is no universal database that records public opinions on all books. But, there is Goodreads! Although it doesn't capture the opinion of all readers, each book in the NYT Top 100 receives a sufficient number of ratings, with the lowest being Edward Jones's <b>All Aunt Hagar's Children</b> at 2,562. 
+
+From The New York Times, I gathered the 100 titles and authors of the voted books. The exact methodology is not revealed, but the New York Times reached out to "hundreds" of participants, asking them to pick their top 10 books. Then, participants were asked to play a mini game of <i>This or That</i>, which helped the Upshot and NYT teams decide the posted rankings. 
+
+From goodreads, I relied on the list of top 100 books of the 21st century, which has over 22,000 user voters [^2]. Interestingly, the voting process sort of resembles MySpace Top 8 friend ranking, so over time, rankings may shift. 
+
+In terms of methodology, I wanted to start with a direct comparison of the different genres on the two lists via graphs. Upon a brief glance on both lists, I do think wildly different types of books are represented by each. For instance, while I do love Twilight's cinematic universe, I am not surprised that Stephanie Meyer does not appear on the literary luminaries' lists but does frequently appear on the general public's lists. 
+
+Similarly, to measure a pop culture / jumping-the-band-wagon bias, I mapped the distribution of rating numbers across the two list. Assuming that both lists comprise books of similar popularity, the distribution should be the same. 
+
+
+Finally, for the Bayesian approach, I am making use of current data to inform an empirical prior while also doing a traditional workflow with the hierarchical method. 
+
+<h2>Popular Genres</h2>
+
+When comparing NYT's list with a user-created list on Goodreads [list](https://www.goodreads.com/list/show/7.Best_Books_of_the_21st_Century?page=1), one thing stands out. Goodreads users love what is known as "genre" fiction, with authors like J.K. Rowling, Stephanie Meyer and Suzanne Collins frequently appearing throughout the list. Despite these prolific "genre" authors writing many popular books, none of them make an appearance on the New York Times's List of Top 100 Best Books. Should these books not receive recognition for their mass appeal? 
+
+<img class = "img1" src = {`${import.meta.env.BASE_URL}/03_books/genre.jpg`}/> 
+
+On the chart to the left, the <span class="sym sym-n">N</span> represents books that appear in the New York Times list while <span class = "sym sym-g">g</span> represents books that appear on the Goodreads list. 
+
+Looking at how the critics voted, the top three genres were contemporary and historical fiction as well as memoirs. Across all three, the genre representation seems to be less on Goodreads, with contemporary fiction having the biggest gap. On the general public side, the fantasy genre is the most underrepresented on the New York Times list as expected. 
+
+However, the two lists also share some overlap with 10 books appearing in both lists:
+
+<b> Insert Image of Top 10 Here </b>
+
+
+<h2>Popular; You're Going to be Popular!</h2>
+
+Now, a good book doesn't <i>have</i> to be popular. In fact, some of my favorite books come from the niche authorship world. For example, Jeremy Atherton Lin's <b>Deep House</b> is a deeply personal love story that also covers the history of gay rights and Eva Baltasar's <b>Bolder</b> is a lovely short novel about belonging and alienation. 
+
+But, given how only 48.5% of US adults reported having read at least one book in 2022[^3], the general public should be selective on what books to read. Oftentimes, the safest choices on good reading investments are also the more popular books. 
+
+Indeed, although the NYT critics seem to lean more niche rather than pop lit, some of the titles chosen are pretty well known. For example <b>Tomorrow, and Tomorrow, and Tomorrow</b> by Gabrielle Zevin was a part of Jimmy Fallon's book club and was ranked 76. Similarly, Claire Keegan's <b>Small Things Like These</b> was featured in Oprah's book club and was ranked 41. In fact, the #1 book, Elena Ferrante's <b>My Brilliant Friend</b>, has been recommended by many celebrities like Dua Lipa and Natalie Portman. 
+
+
+<img class = "img2" src = {`${import.meta.env.BASE_URL}/03_books/popularity.jpg`}/>
+
+
+<img class = "img3" src = {`${import.meta.env.BASE_URL}/03_books/star-rating.jpg`}/>
+
+
+<h2> Ranking the best </h2> 
+
+There's no perfect way to rank books. All readers approach a book differently; some read it for enjoyment, some read it for school, some resonate so absolutely with the material, and some are more or less indifferent. Additionally, as discussed in the section above, some books have quite a few more ratings than others; thus, how do we rank a book like <b>All Aunt Hagar's Children</b> with  against <b>Nickle and Dimed</b>? 
+
+Well, we may not have a perfect system, but we can still try for the best. Because each book on the New York Times Top 100 Books must have some literary merit, I assumed all 100 had the same underlying distribution of star reviews (otherwise known as my prior). After observing the specific reviews for my books (updating my prior), the ratings for each book will shift closer to the hypothetical true distribution (the posterior). The full ranking is as below: 
+
+<b> INSERT RANKING HERE </b> 
+
+
+
+
+  
+[^1]: [Here](https://www.nytimes.com/interactive/2024/books/best-books-21st-century.html) to read more
+[^2]: [Here](https://www.goodreads.com/list/show/7.Best_Books_of_the_21st_Century?page=1)
+[^3]: According to a US Government [post](https://www.arts.gov/stories/blog/2024/federal-data-reading-pleasure-all-signs-show-slump).

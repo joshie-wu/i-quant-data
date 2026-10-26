@@ -1,0 +1,116 @@
+
+:root {
+  --astro-code-color-text: var(--color-text);
+  --astro-code-token-keyword: var(--color-accent-strong);
+  --astro-code-background: var(--color-accent-soft);
+  --astro-code-token-string: var(--color-link);
+  --astro-code-token-comment: var(--color-border);
+  --astro-code-token-function: var(--color-accent-weak);
+}
+
+
+.img1{
+  width: 50%;
+  float: left;
+  padding: 0 3%;
+}
+
+.img2{
+  width: 50%;
+  padding: 0 3%;
+}
+
+.img3{
+  width: 60%;
+  padding: 0 3%;
+}
+
+.sm_img{
+  width: 25%;
+  padding: 0 3%;
+  float:right;
+}
+
+.callout{ 
+  float: left;
+  margin: 1rem 1.5rem 1rem 0;
+  width:35%;
+  background: var(--color-callout);
+  border-left: 3px solid var(--color-border);
+  color: var(--color-accent-strong);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  padding: 1%;
+}
+
+.callout-two{ 
+  float: right;
+  margin: 1rem 0 1rem 1.5rem;
+  width:35%;
+  background: var(--color-callout);
+  border-left: 3px solid var(--color-border);
+  color: var(--color-accent-strong);
+  font-family: var(--font-heading);
+  font-size: 16px;
+  padding: 1%;
+}
+
+.callout b,.callout-two b{
+  background: none;
+}
+
+.callout .credit, .callout-two .credit{
+  font-size: 12px;
+  text-align: right;
+}
+
+pre{
+  float:left;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent-strong);
+  border-radius: 6px;
+  max-height: 10rem;
+  max-width: 45%;
+  padding: 1rem 1.25rem;
+  margin: 1rem 1.5rem 0 0rem;
+  overflow-x: auto;
+  font-family: var(--font-body), monospace;
+  margin:10px;
+}
+
+pre code {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: none;
+  border: none;
+}
+
+
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-track {
+  background-color: var(--color-bg);
+}
+
+.sym {
+  display: inline-block;
+  width: 1.15em; height: 1.15em;
+  line-height: 1.15em;
+  border-radius: 50%;
+  border: 1px solid #555;
+  text-align: center;
+  font-size: 0.85em;
+  vertical-align: -0.15em;
+}
+.sym-n { background: #C9CCD1; }
+.sym-g { background: #EDE3C8; }
+
